@@ -1,20 +1,11 @@
 const express = require('express');
-const router = express.Router();
-const http = require('http');
+const axios = require('axios');
 
-const get = (url) => {
-    return new Promise((resolve, reject) => {
-        http.get(url, (res) => {
-        let body = '';
-        res.on('data', (chunk) => { body += chunk; });
-        res.on('end', () => { resolve(JSON.parse(body)); });
-        }).on('error', (err) => { reject(err); });
-    });
-}
+const router = express.Router();
 
 router.get('/', function(req, res, next) {
-  return get('http://localhost:9100').then((response) => {
-    return  res.json({ response })
+  return axios.get('http://localhost:9100').then(({data}) => {
+    return  res.json({ data })
   })
 });
 
