@@ -4,7 +4,7 @@ const axios = require('axios');
 const router = express.Router();
 
 router.get('/', function (req, res, next) {
-    return axios.get('http://localhost:9100')
+    return axios.get('http://127.0.0.1:9100')
         .then(({data}) => {
             return res.json({data})
         })
